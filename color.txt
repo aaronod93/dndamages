@@ -1,0 +1,5 @@
+User color options:
+
+#880e4f - magenta
+#9400D3 - purple
+#184060 - navy blue
