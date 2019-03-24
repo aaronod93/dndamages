@@ -1,0 +1,592 @@
+            <v-stage ref="stage" @click="handleStageClick" :config="configField">
+                <v-layer>
+                    <field-part-component :key="fieldObject.name" :name="fieldObject.name" :type="fieldObject.type" :config="fieldObject.config"   v-for="fieldObject in fieldObjects.objects">                      
+                    </field-part-component>
+                    <field-part-component :key="sidelineObject.name" :name="sidelineObject.name" :type="sidelineObject.type" :config="sidelineObject.config"   v-for="sidelineObject in sidelineObjects.objects">                      
+                    </field-part-component>
+                    <field-part-component :key="fieldLineObject.name" :name="fieldLineObject.name" type="line" :config="fieldLineObject.config"   v-for="fieldLineObject in fieldLineObjects.objects">                      
+                    </field-part-component>
+                </v-layer>
+            </v-stage>
+
+
+
+fieldObjects: function()
+        {
+            return {
+                objects: []
+            };
+            const width = this.width;
+            const height = this.height;
+            const side_width = this.SIDE_WIDTH;
+            const field_piece_width = (width - (2 * side_width)) * 0.166666;
+            return {
+                width: width,
+                height: height,
+                objects: [
+                    {
+                        name: 'centerCircle',
+                        type: 'circle',
+                        config: 
+                        {
+                            x: width * 0.5,
+                            y: height * 0.5,
+                            width: width * 0.2,
+                            height: width * 0.2,
+                            stroke: 'black',
+                        }  
+                    },
+                    {
+                        name: 'leftBox',
+                        type: 'rect',
+                        config: 
+                        {
+                            x: side_width,
+                            y: height * 0.25,
+                            width: field_piece_width,
+                            height: height * 0.5,
+                        }  
+                    },
+                    {
+                        name: 'rightBox',
+                        type: 'rect',
+                        config: 
+                        {
+                            x: width - side_width - field_piece_width,
+                            y: height * 0.25,
+                            width: field_piece_width,
+                            height: height * 0.5,
+                        }  
+                    },
+                    {
+                        name: 'leftSixYardBox',
+                        type: 'rect',
+                        config: 
+                        {
+                            x: side_width,
+                            y: (height * 0.375),
+                            width: field_piece_width * 0.5,
+                            height: height * 0.25,
+                            fill: '#333',
+                        }  
+                    },
+                    {
+                        name: 'rightSixYardBox',
+                        type: 'rect',
+                        config: 
+                        {
+                            x: width - side_width - field_piece_width * 0.5,
+                            y: (height * 0.375),
+                            width:  field_piece_width * 0.5,
+                            height: height * 0.25,
+                            fill: '#333',
+                        }  
+                    },
+                    {   
+                        name: 'leftD',
+                        type: 'arc',
+                        config:
+                        {
+                            x: field_piece_width - 3,
+                            y: (height * 0.5),
+                            innerRadius: (height * 0.1) - 0.05,
+                            outerRadius: height * 0.1,
+                            angle: 104,
+                            stroke: 'black',
+                            rotation: -52,
+                        }
+                    },
+                    {   
+                        name: 'rightD',
+                        type: 'arc',
+                        config:
+                        {
+                            x: width - field_piece_width + 3,
+                            y: (height * 0.5),
+                            innerRadius: (height * 0.1) - 0.05,
+                            outerRadius: height * 0.1,
+                            angle: 104,
+                            stroke: 'black',
+                            rotation: 128,
+                        }
+                    },
+                    {
+                        name: 'leftNextToSixYardBox',
+                        type: 'rect',
+                        config: 
+                        {
+                            x: side_width + field_piece_width * 0.5,
+                            y: (height * 0.375),
+                            width: field_piece_width * 0.5,
+                            height: height * 0.25,
+                            fill: '#676a6c',
+                        }  
+                    },
+                    {
+                        name: 'rightNextToSixYardBox',
+                        type: 'rect',
+                        config: 
+                        {
+                            x: width - side_width - field_piece_width,
+                            y: (height * 0.375),
+                            width:  field_piece_width * 0.5,
+                            height: height * 0.25,
+                            fill: '#676a6c',
+                        }  
+                    },
+                ]
+            };
+
+        sidelineObjects: function()
+        {
+            return {
+                objects: []
+            };
+            const width = this.width;
+            const height = this.height;
+            const side_width = this.SIDE_WIDTH; 
+            const field_piece_width = (width - (2 * side_width)) * 0.166666;
+            return {
+                objects:[
+                //First Column
+                    {
+                        name: 'leftTopCorner',
+                        type: 'rect',
+                        config: {
+                            x: 0, 
+                            y: 0,
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftTopPost',
+                        type: 'rect',
+                        config: {
+                            x: 0, 
+                            y: height * 0.2, //Second pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftGoal',
+                        type: 'rect',
+                        config: {
+                            x: 0, 
+                            y: height * 0.4, //Third pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: '#1AB394',
+                        }
+                    },
+                    {
+                        name: 'leftGoalOutline',
+                        type: 'rect',
+                        config: {
+                            x: 1, 
+                            y: height * 0.4, //Third pos down
+                            width:side_width - 1, 
+                            height:height * 0.2 - 1, //100% height
+                            stroke: 'black',
+                        }
+                    },
+                    {
+                        name: 'leftBottomPost',
+                        type: 'rect',
+                        config: {
+                            x: 0, 
+                            y: height * 0.6, //Second pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftBottomCorner',
+                        type: 'rect',
+                        config: {
+                           x: 0, 
+                            y: height * 0.8, //Second pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    //End First Column
+                    //Last Column
+                    {
+                        name: 'rightTopCorner',
+                        type: 'rect',
+                        config: {
+                            x:width - side_width, 
+                            y: 0,
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'rightTopPost',
+                        type: 'rect',
+                        config: {
+                            x:width - side_width, 
+                            y: height * 0.2, //Second pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'rightGoal',
+                        type: 'rect',
+                        config: {
+                            x:width - side_width, 
+                            y: height * 0.4, //Third pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: '#1AB394',
+                        }
+                    },
+                    {
+                        name: 'rightGoalOutline',
+                        type: 'rect',
+                        config: {
+                            x: width - side_width + 1, 
+                            y: height * 0.4, //Third pos down
+                            width:side_width - 1, 
+                            height:height * 0.2 - 1, //100% height
+                            stroke: 'black',
+                        }
+                    },
+                    {
+                        name: 'rightBottomPost',
+                        type: 'rect',
+                        config: {
+                            x:width - side_width, 
+                            y: height * 0.6, //Second pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'rightBottomCorner',
+                        type: 'rect',
+                        config: {
+                            x:width - side_width, 
+                            y: height * 0.8, //Second pos down
+                            width:side_width, 
+                            height:height * 0.2, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    //End Last Column 
+                    //Left side of field
+                    {
+                        name: 'leftTopLeftSideline',
+                        type: 'rect',
+                        config: {
+                            x: side_width, 
+                            y: 0,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftTopCenterSideline',
+                        type: 'rect',
+                        config: {
+                            x: field_piece_width + side_width, 
+                            y: 0,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftTopRightSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 2) + side_width, 
+                            y: 0,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftBottomLeftSideline',
+                        type: 'rect',
+                        config: {
+                            x: side_width, 
+                            y: height - side_width,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftBottomCenterSideline',
+                        type: 'rect',
+                        config: {
+                            x: field_piece_width + side_width, 
+                            y: height - side_width,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftBottomRightSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 2) + side_width, 
+                            y: height - side_width,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    //Right side of field
+                    {
+                        name: 'rightTopLeftSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 3) + side_width, 
+                            y: 0,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'rightTopCenterSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 4) + side_width, 
+                            y: 0,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'rightTopRightSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 5) + side_width, 
+                            y: 0,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'leftBottomLeftSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 3) + side_width, 
+                            y: height - side_width,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'rightBottomCenterSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 4) + side_width, 
+                            y: height - side_width,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    {
+                        name: 'rightBottomRightSideline',
+                        type: 'rect',
+                        config: {
+                            x: (field_piece_width * 5) + side_width, 
+                            y: height - side_width,
+                            width: field_piece_width, 
+                            height: side_width, //100% height
+                            fill: 'lightgrey',
+                        }
+                    },
+                    //x: ,
+                    //y: ,
+                ]
+            };
+        fieldLineObjects: function()
+        {
+            return {
+                objects: []
+            };
+            const width = this.width;
+            const height = this.height;
+            const side_width = this.SIDE_WIDTH;
+            const field_piece_width = (width - (2 * side_width)) * 0.166666;
+            const stroke = 'black';
+            return  {
+                objects: [
+                    {
+                        name: 'leftBoundary',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [0,0,0, height],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'rightBoundary',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [width,0,width, height],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'topBoundary',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [0,0,width,0],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'bottomBoundary',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [0,height,width,height],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'centerLine',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [width * 0.5,side_width,width * 0.5,height-side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'leftGoalLine',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [side_width,side_width,side_width, height - side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'topLeftCornerDiagonal',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [0,0, side_width, side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'bottomLeftCornerDiagonal',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [0, height, side_width, height - side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'topSideLine',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [side_width, side_width, width - side_width, side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'bottomSideLine',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [side_width, height - side_width, width - side_width, height - side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'rightGoalLine',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [width - side_width,side_width, width - side_width, height - side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'topRightCornerDiagonal',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [width,0, width- side_width, side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'bottomRightCornerDiagonal',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [width, height, width - side_width, height - side_width],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'leftSixYardOutline',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [
+                                //top left to right
+                                side_width + 1, height * 0.375 + 1, 
+                                side_width + field_piece_width * 0.5, height * 0.375 + 1,
+                                //right down to bottom
+                                side_width + field_piece_width * 0.5, height * 0.625 - 1,
+                               //bottom to left
+                               side_width + field_piece_width * 0.5, height * 0.625 - 1,
+                               side_width + 1, height * 0.625 - 1,
+                               ],
+                            stroke: stroke
+                        }
+                    },
+                    {
+                        name: 'rightSixYardOutline',
+                        type: 'line',
+                        config: 
+                        {
+                            points: [
+                                //top right to left
+                                width - side_width, height * 0.375 + 1,
+                                side_width + 1, height * 0.375 + 1, 
+                                //right down to bottom
+                                side_width + field_piece_width * 0.5, height * 0.625 - 1,
+                               //bottom to left
+                               side_width + field_piece_width * 0.5, height * 0.625 - 1,
+                               side_width + 1, height * 0.625 - 1,
+                               ],
+                            stroke: stroke
+                        }
+                    },
+                ]
+            };
+        }
