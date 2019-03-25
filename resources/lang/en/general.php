@@ -14,4 +14,5 @@ return [
     'home' => 'Home',
     'forgotPassword' => 'Forgot Password',
     'register' => 'Register',
+    'profile' => 'Profile',
 ];

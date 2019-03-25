@@ -21,6 +21,7 @@ class CreateCharactersTable extends Migration
             $table->string('classes')->nullable();
             $table->string('race')->nullable();
             $table->integer('theme_number')->default(0);
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

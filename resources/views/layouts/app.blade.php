@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
+@php
+    $user = Auth::check() ? Auth::user() : null;
+@endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +14,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script>
+    var CSRF_TOKEN = "{{csrf_token()}}";
+    </script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -23,24 +28,28 @@
     @yield('head-content')
   </script>
 </head>
-<body>
+<body class="h-100">
   <div class="preloader">
     <div class="loader"></div>
   </div>
 <div id="vue-navbar" class="bg-theme">
-    <nav class="navbar navbar-dark navbar-expand-lg">
-        <button type="button" data-toggle="collapse" data-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+    <nav class="navbar navbar-dark navbar-expand-sm">
+        <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
         <span class="navbar-toggler-icon"><!----></span>
         </button> 
+        <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ripple-parent">
-                <a href="/home" class="nav-link navbar-link">@lang('general.home')</a>
+                <a href="{{route('home')}}" class="nav-link navbar-link">@lang('general.home')</a>
             </li> 
         </ul>
-        <ul class="navbar-nav ml-auto navbar-expand-lg mb-0">
+        <ul class="navbar-nav ml-auto mb-0">
           <li class="nav-item ripple-parent bg-theme d-flex align-items-center pr-3">
             <img class="color-picker" width="30" height="30" src="{{asset('icons/paint-bucket.svg')}}"></img>
           </li>
+          <li class="nav-item ripple-parent">
+                <a href="{{route('user.profile')}}" class="nav-link navbar-link">@lang('general.profile')</a>
+          </li> 
           <li class="nav-item ripple-parent">
                 @if(Auth::check())
                 <a href="/logout" class="nav-link navbar-link">@lang('general.signout')&nbsp;<i class="fa fa-sign-out-alt"></i></a>
@@ -49,10 +58,11 @@
                 @endif
           </li>
         </ul>
+        </div>
     </nav>
 </div>
   <!-- Page Content -->
-  <div class="container mt-1">
+  <div class="container mainContent">
   @yield('content')
 
   </div>
@@ -70,60 +80,58 @@
   <script src="{{asset('js/manifest.js')}}"></script>
   <script src="{{asset('js/vendor.js')}}"></script>
   <script>
-    window.defaultColor = '#184060';
-    window.currentColor = window.defaultColor;
-    window.oppositeColor = '#ffffff';
-  </script>
-  @yield('colorScriptSection')
-  <script>
-    const pickr = Pickr.create({
-      el: '.color-picker',
-      useAsButton: true,
-      components: {
-          // Main components
-          preview: true,
-          opacity: true,
-          hue: true,
-
-          // Input / output Options
-          interaction: {
-              hex: true,
-              input: true,
-              clear: true,
-              save: true
-          }
+  $(function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="_token"]').attr('content')
       }
     });
-    pickr.on('init', (pickrInstance) => {
-        pickrInstance.setColor(window.defaultColor);
+  });
+  </script>
+  <script src="{{asset('js/site-themer.js')}}"></script>
+  <script>
+  const themePickr = Pickr.create({
+    el: '.color-picker',
+    useAsButton:true,
+    components: {
+        // Main components
+        preview: true,
+        opacity: false,
+        hue: true,
+        // Input / output Options
+        interaction: {
+            hex: false,
+            rgba: false,
+            hsla: false,
+            hsva: false,
+            cmyk: false,
+            input: true,
+            clear: true,
+            save: true
+        }
+    }
+});
+    window.siteThemer = new siteThemer({
+      @if($user != null)
+        themeUrl: '{{route('users.settheme', $user->id)}}',
+      @endif
+      @if($user != null && $user->theme_color)
+        currentColor: '#{{$user->theme_color}}',
+      @endif
+    });
+    themePickr.on('init', (pickrInstance) => {
+      var color = siteThemer.getCurrentColor();
+      console.log('color is: ' + color);
+      pickrInstance.setColor(color);
     }).on('save', (colorObj, pickrInstance) => {
         if(colorObj)
         {
-           console.log(colorObj.toHEX().toString());
-           window.setColor(colorObj.toHEX().toString());
+          siteThemer.setColor(colorObj.toHEX().toString());
         }
     });
-    window.setColor = function(color)
-    {
-        window.currentColor = color;
-        window.updateColor();
-    }
-    window.updateColor = function()
-    {
-      $('.bg-theme').attr('style', 
-      'background-color:' + window.currentColor + '!important;' + 
-      'color:' + window.oppositeColor + '!important;');
-      $('.txt-theme').attr('style', 
-      'color:' + window.currentColor + '!important;' + 
-      'background-color:' + window.oppositeColor + '!important;');
-      $('.bg-border-theme').attr('style', 
-      'border-color:' + window.currentColor + '!important;');
-      $('.txt-border-theme').attr('style', 
-      'border:1px solid ' + window.oppositeColor + '!important;');
-    }
     $(document).ready(function()
     {
-      window.updateColor();
+      siteThemer.updateColor();
       $('.preloader').hide();
     });
   </script>

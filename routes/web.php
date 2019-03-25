@@ -15,3 +15,8 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::resource('/characters', 'Resources\CharacterController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+/* User Routes */
+Route::get('/users/{user_id}/setTheme', 'Users\UserController@setTheme')->name('users.settheme');
+Route::get('/user', 'Users\UserController@index')->name('user.profile');

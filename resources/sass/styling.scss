@@ -1,4 +1,9 @@
 @import "./variables";
+.mainContent
+{
+  height: calc(100% - 105px);
+  margin-top:5px;
+}
 .jumbotron.header
 {
     padding-top:16px;
