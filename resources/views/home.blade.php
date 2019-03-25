@@ -3,6 +3,7 @@
 @lang('general.homeTitle')
 @endsection
 @section('content')
+<div class="container mainContent">
 <!-- Jumbotron Header -->
 <header class="jumbotron header txt-theme">
   <h1 class="display-5">@lang('general.homeTitle')</h1>
@@ -24,6 +25,7 @@
       </div>
       </div>
     </div>
+  </div>
   @endsection
   @section('js-scripts')
   <script>

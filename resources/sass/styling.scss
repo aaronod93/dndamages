@@ -13,6 +13,11 @@
 {
     margin-bottom:1rem!important;
 }
+.jumbotron.split
+{
+  margin-top:4px;
+  margin-bottom:4px!important;
+}
 .card-img
 {
     width:25%;
@@ -26,7 +31,17 @@
     padding-top:15px;
     padding-bottom:15px;
 }
-
+.stat-list
+{
+  label
+  {
+    padding-left:5px;
+  }
+  .stat
+  {
+    padding-right:5px;
+  }
+}
 /*Preloader*/
 .preloader
 {

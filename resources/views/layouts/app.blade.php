@@ -47,11 +47,13 @@
           <li class="nav-item ripple-parent bg-theme d-flex align-items-center pr-3">
             <img class="color-picker" width="30" height="30" src="{{asset('icons/paint-bucket.svg')}}"></img>
           </li>
+          @if($user)
           <li class="nav-item ripple-parent">
                 <a href="{{route('user.profile')}}" class="nav-link navbar-link">@lang('general.profile')</a>
           </li> 
+          @endif
           <li class="nav-item ripple-parent">
-                @if(Auth::check())
+                @if($user)
                 <a href="/logout" class="nav-link navbar-link">@lang('general.signout')&nbsp;<i class="fa fa-sign-out-alt"></i></a>
                 @else
                 <a href="/login" class="nav-link navbar-link">@lang('general.signin')&nbsp;<i class="fa fa-sign-in-alt"></i></a>
@@ -62,10 +64,7 @@
     </nav>
 </div>
   <!-- Page Content -->
-  <div class="container mainContent">
   @yield('content')
-
-  </div>
   <!-- /.container -->
 
   <!-- Footer -->

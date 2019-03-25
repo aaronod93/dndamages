@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.profile');
+        return view('users.profile', ['user' => Auth::user()]);
     }
     public function setTheme(Request $request, $user_id)
     {
