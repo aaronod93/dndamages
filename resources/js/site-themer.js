@@ -45,17 +45,18 @@
 
     pluginPrototype.setColor = function(color, updateTheme)
     {
+      console.log('setting passed in color: ' + color);
         var self = this;
         if(color == null || color == self.options.currentColor || color == self.options.oppositeColor)
           return;
         self.options.currentColor = color;
         self.updateColor(updateTheme);
         updateTheme = updateTheme | true;
-        if(updateTheme == true && window.themeUrl != null)
+        if(updateTheme == true && self.options.themeUrl != null)
         {
           $.ajax({
             /* the route pointing to the post function */
-            url: self.options.themeUrl + '?theme_color=' + window.currentColor.replace('#', '', self.options.currentColor),
+            url: self.options.themeUrl + '?theme_color=' + self.options.currentColor.replace('#', '', self.options.currentColor),
             type: 'GET',
             dataType: 'JSON',
             /* remind that 'data' is the response of the AjaxController */
@@ -70,6 +71,7 @@
       var self = this;
       for(var selectorIndex in self.options.selectors)
       {
+        console.log([selectorIndex, self.options.selectors[selectorIndex]]);
          var selectorObj = self.options.selectors[selectorIndex];
          $(selectorObj.selector).attr(selectorObj.attr, 
           selectorObj.value

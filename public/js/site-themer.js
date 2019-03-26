@@ -45,16 +45,17 @@
   var pluginPrototype = window.siteThemer.prototype;
 
   pluginPrototype.setColor = function (color, updateTheme) {
+    console.log('setting passed in color: ' + color);
     var self = this;
     if (color == null || color == self.options.currentColor || color == self.options.oppositeColor) return;
     self.options.currentColor = color;
     self.updateColor(updateTheme);
     updateTheme = updateTheme | true;
 
-    if (updateTheme == true && window.themeUrl != null) {
+    if (updateTheme == true && self.options.themeUrl != null) {
       $.ajax({
         /* the route pointing to the post function */
-        url: self.options.themeUrl + '?theme_color=' + window.currentColor.replace('#', '', self.options.currentColor),
+        url: self.options.themeUrl + '?theme_color=' + self.options.currentColor.replace('#', '', self.options.currentColor),
         type: 'GET',
         dataType: 'JSON',
 
@@ -69,6 +70,7 @@
     var self = this;
 
     for (var selectorIndex in self.options.selectors) {
+      console.log([selectorIndex, self.options.selectors[selectorIndex]]);
       var selectorObj = self.options.selectors[selectorIndex];
       $(selectorObj.selector).attr(selectorObj.attr, selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor));
     }
@@ -102,8 +104,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\repositories\dnd\resources\js\site-themer.js */"./resources/js/site-themer.js");
-module.exports = __webpack_require__(/*! C:\repositories\dnd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Repositories\dnd\resources\js\site-themer.js */"./resources/js/site-themer.js");
+module.exports = __webpack_require__(/*! C:\Repositories\dnd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

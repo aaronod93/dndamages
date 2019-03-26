@@ -33,7 +33,7 @@
     <div class="loader"></div>
   </div>
 <div id="vue-navbar" class="bg-theme">
-    <nav class="navbar navbar-dark navbar-expand-sm">
+    <nav class="navbar navbar-dark navbar-expand-sm bg-theme">
         <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
         <span class="navbar-toggler-icon"><!----></span>
         </button> 
@@ -125,7 +125,7 @@
     }).on('save', (colorObj, pickrInstance) => {
         if(colorObj)
         {
-          siteThemer.setColor(colorObj.toHEX().toString());
+          siteThemer.setColor(colorObj.toHEX().toString(), true);
         }
     });
     $(document).ready(function()

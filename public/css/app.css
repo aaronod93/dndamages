@@ -36795,9 +36795,33 @@ ul.stepper li.completed a .label {
   margin-bottom: 1rem !important;
 }
 
-.jumbotron.split {
+.split .jumbotron {
   margin-top: 4px;
   margin-bottom: 4px !important;
+}
+
+.split-jumbotron {
+  height: 100%;
+}
+
+.nb-t .list-group-item {
+  border-top: 0;
+}
+
+.nb-b .list-group-item {
+  border-bottom: 0;
+}
+
+.split {
+  height: calc(50% - 20px);
+  margin-bottom: 5px;
+}
+
+.stat-info {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: left;
 }
 
 .card-img {
