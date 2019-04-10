@@ -36,6 +36,11 @@
             attr: 'style',
             value: 'border:1px solid {oppositeColor}!important;'
           },
+          {
+            selector: '#form2:focus, #form3:focus',
+            attr: 'style',
+            value: 'box-shadow: 0 1px 0 0 {currentColor}!important;border-bottom: 1px solid {currentColor}!important;color:{currentColor}!important'
+          }
         ],
         themeUrl: '/users/settheme',
         pickr: null,
@@ -74,6 +79,36 @@
         console.log([selectorIndex, self.options.selectors[selectorIndex]]);
          var selectorObj = self.options.selectors[selectorIndex];
          $(selectorObj.selector).attr(selectorObj.attr, 
+          selectorObj.value
+          .replace('{currentColor}', self.options.currentColor)
+          .replace('{defaultColor}', self.options.defaultColor)
+          .replace('{oppositeColor}', self.options.oppositeColor)
+          );
+      }
+    };
+    pluginPrototype.getSelectorValueByIndex = function(index)
+    {
+      var self = this;
+      if(self.options.selectors.length <= index)
+        return null;
+      var selectorObj = self.options.selectors[index];
+      if(selectorObj)
+      {
+        return selectorObj.value
+          .replace('{currentColor}', self.options.currentColor)
+          .replace('{defaultColor}', self.options.defaultColor)
+          .replace('{oppositeColor}', self.options.oppositeColor);
+      }
+      return null;
+    };
+    pluginPrototype.updateColorIndex = function(index)
+    {
+      var self = this;
+      var selectorObj = self.options.selectors[index];
+      if(selectorObj)
+      {
+        console.log([selectorObj]);
+        $(selectorObj.selector).attr(selectorObj.attr, 
           selectorObj.value
           .replace('{currentColor}', self.options.currentColor)
           .replace('{defaultColor}', self.options.defaultColor)

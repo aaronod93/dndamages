@@ -38,6 +38,10 @@
       selector: '.bg-border-theme, .bg-theme .pcr-button',
       attr: 'style',
       value: 'border:1px solid {oppositeColor}!important;'
+    }, {
+      selector: '#form2:focus, #form3:focus',
+      attr: 'style',
+      value: 'box-shadow: 0 1px 0 0 {currentColor}!important;border-bottom: 1px solid {currentColor}!important;color:{currentColor}!important'
     }],
     themeUrl: '/users/settheme',
     pickr: null
@@ -76,6 +80,28 @@
     }
   };
 
+  pluginPrototype.getSelectorValueByIndex = function (index) {
+    var self = this;
+    if (self.options.selectors.length <= index) return null;
+    var selectorObj = self.options.selectors[index];
+
+    if (selectorObj) {
+      return selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor);
+    }
+
+    return null;
+  };
+
+  pluginPrototype.updateColorIndex = function (index) {
+    var self = this;
+    var selectorObj = self.options.selectors[index];
+
+    if (selectorObj) {
+      console.log([selectorObj]);
+      $(selectorObj.selector).attr(selectorObj.attr, selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor));
+    }
+  };
+
   pluginPrototype.getCurrentColor = function () {
     var self = this;
     return self.options.currentColor;
@@ -104,8 +130,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Repositories\dnd\resources\js\site-themer.js */"./resources/js/site-themer.js");
-module.exports = __webpack_require__(/*! C:\Repositories\dnd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\repositories\dnd\resources\js\site-themer.js */"./resources/js/site-themer.js");
+module.exports = __webpack_require__(/*! C:\repositories\dnd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -44,21 +44,39 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-9 h-100">
+        <div class="col-12 col-md-9 h-100 mt-5 mb-3 top-jumbo">
             <div class="d-flex flex-column h-100">
                 <div class="row text-center justify-content-center flex-grow-1">
                     <div id="other-profile" class="col-12 h-100">
                         <div class="row text-center justify-content-center split">
-                            <div class="col-12 h-100">
-                                <div class="jumbotron card-jumbotron hoverable split-jumbotron">
-                                    <h5 class="txt-theme">Sessions</h5>
+                            <div class="col-12">
+                                <div class="jumbotron card-jumbotron hoverable split-jumbotron mt-0">
+                                <div class="row h-20">
+                                        <div class="col-12">
+                                        <h5 class="txt-theme">Sessions</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row h-80">
+                                        <div class="col-12 flex-grow-1">
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row text-center justify-content-center split">
-                            <div class="col-12 h-100">
+                        <div class="row text-center justify-content-center split jumbo-bottom">
+                            <div class="col-12">
                                 <div class="jumbotron card-jumbotron hoverable split-jumbotron">
-                                    <h5 class="txt-theme">Characters</h5>
+                                    <div class="row h-20">
+                                        <div class="col-12">
+                                        <h5 class="txt-theme">Characters</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row h-80">
+                                        <div class="col-12 flex-grow-1">
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -77997,9 +77997,11 @@ Vue.component('navbar-dnd-component', __webpack_require__(/*! ../js/components/N
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
-  el: '#vue-navbar'
+/*
+const app = new Vue({
+    el: '#vue-navbar'
 });
+*/
 
 /***/ }),
 
@@ -78137,7 +78139,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Repositories\dnd\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\repositories\dnd\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

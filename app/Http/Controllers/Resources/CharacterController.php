@@ -8,13 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class CharacterController extends Controller
 {
-    public function index($user_id)
+    public function index()
     {
-      $characters = Character::all();
+      $user = Auth::user();
+      if(!$user)
+        abort(401);
+      //$characters = Character::all();
+      //return response()->json($characters);
+      return view('characters.index', compact('user'));
     }
     public function show(Request $request, $id)
     {
       $character = Character::findOrFail($id);
+      return response()->json($character);
     }
     public function create(Request $request)
     {
