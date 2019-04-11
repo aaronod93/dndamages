@@ -9,7 +9,7 @@
             <div class="d-flex flex-column h-100">
                 <div class="row text-center justify-content-center flex-grow-1">
                     <div id="user-profile" class="card-component mh-100 col-12">
-                        <div class="jumbotron card-jumbotron hoverable mh-100 txt-theme">
+                        <div class="h-100 jumbotron card-jumbotron hoverable mh-100 txt-theme">
                             <img class="card-img bg-dark bg-theme" src="https://dnd.app/icons/person.svg" alt="">
                             <ul class="list-group list-group-flush pt-2 nb-t nb-b">
                                 <li class="list-group-item d-flex justify-content-center">
@@ -25,7 +25,10 @@
                                     </span>
                                 </li>
                             </ul>
-                            <ul class="list-group list-group-flush mt-5 nb-t nb-b">
+                            <ul class="list-group list-group-flush mt-2 nb-t nb-b">
+                                <li class="list-group-item d-flex justify-content-between align-items-center .h-pix-10">
+                                    <span class="w-100" style="height:1px; border-bottom:1px solid lightgrey;"></span>
+                                </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Owned Sessions
                                     <span class="badge bg-theme badge-pill">14</span>
@@ -37,6 +40,18 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Inactive Sessions
                                     <span class="badge bg-theme badge-pill">1</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center .h-pix-10">
+                                    <span class="w-100" style="height:1px; border-bottom:1px solid lightgrey;"></span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <a href="/characters" type="button" class="btn bg-theme w-100 py-1">
+                                    <img class="img-icon x1p5 d-inline-flex" src="/icons/cement-shoes.svg"><span class="d-inline-flex">Characters</span>
+                                <i class="fa fa-arrow-right d-inline-flex"></i></a>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <a href="/sessions" type="button" class="btn bg-theme w-100 py-1">Sessions&nbsp;
+                                <i class="fa fa-arrow-right"></i></a>
                                 </li>
                             </ul>
                         </div>

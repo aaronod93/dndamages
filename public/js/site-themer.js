@@ -130,8 +130,8 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\repositories\dnd\resources\js\site-themer.js */"./resources/js/site-themer.js");
-module.exports = __webpack_require__(/*! C:\repositories\dnd\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Repositories\dnd\resources\js\site-themer.js */"./resources/js/site-themer.js");
+module.exports = __webpack_require__(/*! C:\Repositories\dnd\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

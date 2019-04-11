@@ -30,9 +30,40 @@
 {
   border-bottom:0;
 }
+.img-icon
+{
+  height:1rem;
+  width:1rem;
+}
+.ta-l
+{
+  text-align:left;
+}
+.ta-r
+{
+  text-align:right;
+}
+.ta-c
+{
+  text-align:center;
+}
+.img-icon.x2
+{
+  height:2rem;
+  width:2rem;
+}
+.img-icon.x1p5
+{
+  height:1.5rem;
+  width:1.5rem;
+}
+.h-pix-10
+{
+  height:10px;
+}
 .split
 {
-   height:calc(50% - 20px);
+   height:calc(50% - 5px);
    margin-bottom:5px;
 }
 .stat-info

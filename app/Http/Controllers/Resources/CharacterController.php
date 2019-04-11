@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\Datatables\Datatables;
+use App\Services\CharacterService;
 
 class CharacterController extends Controller
 {
@@ -21,6 +23,11 @@ class CharacterController extends Controller
     {
       $character = Character::findOrFail($id);
       return response()->json($character);
+    }
+    public function userDatatable()
+    {
+        return DataTables::of(CharacterService::getUserCharactersQuery())
+        ->make(true);
     }
     public function create(Request $request)
     {

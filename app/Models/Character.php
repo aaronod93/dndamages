@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
 use App\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Character extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'maximum_hp',
         'name',

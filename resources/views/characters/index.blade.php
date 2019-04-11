@@ -3,6 +3,21 @@
 @lang('general.homeTitle')
 @endsection
 @section('content')
+<style>
+.dataTables_filter
+{
+    text-align:left;
+}
+input[type=search]
+{
+    -webkit-appearance: searchfield!important;
+    margin-left:5px;
+}
+.dataTables_length, .dataTables_paginate, .dataTables_info
+{
+    display:none;
+}
+</style>
 <div class="container-fluid mainContent">
 <div class="row text-center h-100 justify-content-center">
     <div class="col-12 h-100">
@@ -16,9 +31,9 @@
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Level</th>
-                            <th scope="col">Classes</th>
+                            <th scope="col">Class(es)</th>
                             <th scope="col">Race</th>
-                            <th scope="col">Theme Color</th>
+                            <!-- <th scope="col">Theme Color</th> -->
                             <th scope="col">Max HP</th>
                         </tr>
                     </thead>
@@ -28,10 +43,62 @@
     </div>
 </div>
 </div>
+@endsection
+@section('js-scripts')
 <script type="text/javascript">
-$(document).ready(function () {
-    $('#dtYourCharacters').DataTable();
-    $('.dataTables_length').addClass('bs-select');
-});
+    $(document).ready(function () {
+        $('input[type=search]').addClass('form-control');
+        $('.dtYourCharacters').DataTable({
+            order: [[ 4, "desc" ]],
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '/characters/datatable/user',
+                method: 'POST', 
+				headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            },
+            columns: [
+                {
+                    data: 'id',
+                },
+                {
+                    data: 'name'
+                },
+                {
+                    data: 'level'
+                },
+                {
+                    data: 'classes'
+                },
+                {
+                    data: 'race',
+                },
+                // {
+                //     data: 'theme_color',
+                // },
+                {
+                    data: 'maximum_hp',
+                },
+                /*{   
+                    data: 'report_status',
+                    name: 'vtwo.name',
+                    render: function(data, type, row) {
+                        if (type === "sort" || type === "type")
+                            return data;
+                        if (row.report_status_slug == "pending")
+                            return "<span class='label label-warning'>"+row.report_status+"</span>";
+                        if (row.report_status_slug == "open")
+                            return "<span class='label label-danger'>"+row.report_status+"</span>";
+                        if (row.report_status_slug == "closed")
+                            return "<span class='label label-primary'>"+row.report_status+"</span>";
+                    }
+                },*/
+               // { data: 'actions' },
+            ],
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
 </script>
 @endsection

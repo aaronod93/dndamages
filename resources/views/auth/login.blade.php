@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header txt-theme">@lang('general.signin')</div>
@@ -11,7 +11,7 @@
                         @csrf
                         <div class="form-group row txt-theme">
                             <label for="email" class="col-2 col-form-label text-md-right"><i class="fa fa-envelope fa-2x"></i></label>
-                            <div class="col-md-8">
+                            <div class="col-8">
                                 <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -49,11 +49,12 @@
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-sm btn-link txt-theme" href="{{ route('password.request') }}">
                                     @lang('general.forgotPassword')
+                                    &nbsp;<i class="fa fa-question"></i>
                                     </a>
                                 @endif
                             </div>
-                            <div class="col-6">
-                                <a href="/register" class="btn btn-sm btn-link txt-theme">@lang('general.register')</a>
+                            <div class="col-6 text-right">
+                                <a href="/register" class="btn btn-sm btn-link txt-theme">@lang('general.register')&nbsp;<i class="fa fa-scroll"></i></a>
                             </div>
                         </div>
                     </form>
