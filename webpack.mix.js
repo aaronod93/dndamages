@@ -11,7 +11,7 @@ require('@fortawesome/fontawesome-free');
  |
  */
 mix.js('resources/js/site-themer.js', 'public/js');
-
+mix.js('resources/js/components/js/character-tile.js', 'public/js');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .extract(['vue', 'jquery', 'axios']);

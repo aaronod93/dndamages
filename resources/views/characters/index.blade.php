@@ -13,6 +13,14 @@ input[type=search]
     -webkit-appearance: searchfield!important;
     margin-left:5px;
 }
+.dtLoader
+{
+    position:absolute!important;
+    height:calc(100% - 90px)!important;
+    width:calc(100% - 30px)!important;
+    top:90px!important;
+    display:inline!important;
+}
 .dataTables_length, .dataTables_paginate, .dataTables_info
 {
     display:none;
@@ -52,6 +60,8 @@ input[type=search]
             order: [[ 4, "desc" ]],
             processing: true,
             serverSide: true,
+            searchDelay: 1000,
+            responsive:true,
             ajax: {
                 url: '/characters/datatable/user',
                 method: 'POST', 
@@ -59,6 +69,7 @@ input[type=search]
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             },
+            oLanguage: {sProcessing: '<div class="preloader dtLoader"><div style="width:50px;height:50px;" class="loader"></div></div>'},
             columns: [
                 {
                     data: 'id',

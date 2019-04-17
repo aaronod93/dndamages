@@ -93423,7 +93423,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!***********************************!*\
   !*** multi ./resources/js/app.js ***!
   \***********************************/
@@ -93435,4 +93435,4 @@ module.exports = __webpack_require__(/*! C:\Repositories\dnd\resources\js\app.js
 
 /***/ })
 
-},[[1,"/js/manifest","/js/vendor"]]]);
+},[[2,"/js/manifest","/js/vendor"]]]);

@@ -3,6 +3,13 @@
 @lang('general.homeTitle')
 @endsection
 @section('content')
+<style>
+.fa-h-fix
+{
+    margin-top: 0.2em;
+    background-color: rgba(0,0,0,0);
+}
+</style>
 <div class="container-fluid mainContent">
     <div class="row text-center h-100">
         <div class="col-12 col-md-3 h-100">
@@ -45,13 +52,15 @@
                                     <span class="w-100" style="height:1px; border-bottom:1px solid lightgrey;"></span>
                                 </li>
                                 <li class="d-flex justify-content-between">
-                                    <a href="/characters" type="button" class="btn bg-theme w-100 py-1">
+                                    <a href="/characters" type="button" class="btn bg-theme w-100 py-1 d-flex justify-content-between">
                                     <img class="img-icon x1p5 d-inline-flex" src="/icons/cement-shoes.svg"><span class="d-inline-flex">Characters</span>
-                                <i class="fa fa-arrow-right d-inline-flex"></i></a>
+                                <i class="fa fa-arrow-right d-inline-flex fa-h-fix"></i></a>
                                 </li>
                                 <li class="d-flex justify-content-between">
-                                    <a href="/sessions" type="button" class="btn bg-theme w-100 py-1">Sessions&nbsp;
-                                <i class="fa fa-arrow-right"></i></a>
+                                    <a href="/sessions" type="button" class="btn bg-theme w-100 py-1 d-flex justify-content-between">
+                                    <img class="img-icon x1p5 d-inline-flex" src="/icons/system/bookmarklet.svg">
+                                    <span class="d-inline-flex">Sessions</span>
+                                <i class="fa fa-arrow-right d-inline-flex fa-h-fix"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -88,8 +97,8 @@
                                         </div>
                                     </div>
                                     <div class="row h-80">
-                                        <div class="col-12 flex-grow-1">
-                                            
+                                        <div class="col-12 flex-grow-1 char-app">
+                                            <character-tile-component userid="{{Auth::user()->id}}"></character-tile-component>
                                         </div>
                                     </div>
                                 </div>
@@ -101,4 +110,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js-scripts')
+<script src="{{ asset('js/character-tile.js') }}"></script>
 @endsection
