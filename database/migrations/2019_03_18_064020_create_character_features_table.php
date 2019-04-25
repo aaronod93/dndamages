@@ -13,6 +13,7 @@ class CreateCharacterFeaturesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('character_features');
         Schema::create('character_features', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

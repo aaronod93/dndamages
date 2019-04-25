@@ -94,11 +94,14 @@
                                     <div class="row h-20">
                                         <div class="col-12">
                                         <h5 class="txt-theme">Characters</h5>
+                                        <div class="col-12 char-app">
+                                            <session-tile-component url="/sessions/user" userid="{{Auth::user()->id}}"></session-tile-component>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="row h-80">
-                                        <div class="col-12 flex-grow-1 char-app">
-                                            <character-tile-component userid="{{Auth::user()->id}}"></character-tile-component>
+                                        <div class="col-12 char-app">
+                                            <character-tile-component url="/characters/user" userid="{{Auth::user()->id}}"></character-tile-component>
                                         </div>
                                     </div>
                                 </div>
@@ -112,5 +115,6 @@
 </div>
 @endsection
 @section('js-scripts')
+<script src="{{ asset('js/session-tile.js') }}"></script>
 <script src="{{ asset('js/character-tile.js') }}"></script>
 @endsection

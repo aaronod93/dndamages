@@ -1,11 +1,11 @@
 <template>
     <div class="row justify-content-center h-100">
-        <span v-if="characters.length == 0">No characters found.</span>
+        <span v-if="sessions.length == 0">No sessions found.</span>
         <div v-else class="d-flex col-12 px-4">
-            <div class="character-tile" :key="character.id" v-for="character in characters">
-                <img :src="character.imageUrl ? character.imageUrl : '/icons/cement-shoes.svg'" class="character-img bg-theme" />
-                <div class="character-label d-inline-flex flex-col align-items-end text-center">
-                    <span class="character-name font-italic text-truncate w-100">{{character.name}}</span>
+            <div class="session-tile" :key="session.id" v-for="session in sessions">
+                <img src="/icons/system/bookmarklet.svg" class="session-img bg-theme" />
+                <div class="session-label d-inline-flex flex-col align-items-end text-center">
+                    <span class="session-name font-italic text-truncate w-100">{{session.name}}</span>
                 </div>
             </div>
         </div>
@@ -15,62 +15,62 @@
 <script>
 const axios = require('axios');
     export default {
-        name:'character-tile-component',
+        name:'session-tile-component',
         props: ['userid', 'url'],
         created()
         {
-            this.initialiseCharacters();
+            this.initialiseSessions();
         },
         data()
         {
             return {
-                characters: []
+                sessions: []
             };
         },
         mounted() {
             
         },
         methods:{
-            initialiseCharacters: function()
+            initialiseSessions: function()
             {
                 var vm = this;
                 axios.post(vm.url, {
                 user_id: vm.userid
                 }).then(function (response) {
                     console.log(response.data);
-                    vm.characters = response.data;
+                    vm.sessions = response.data;
                 }).catch(function (error) {
-                    console.log('Error - could not retrieve characters for user')
+                    console.log('Error - could not retrieve sessions for user')
                 });
             }
         },
         data(){
             return {
-               characters: []
+               sessions: []
             };
         }
     }
 </script>
 <style scoped>
-.character-tile
+.session-tile
 {
     height:100%;
     width:20%;
     padding:5px;
     border: 1px solid lightgrey;
 }
-.character-img
+.session-img
 {
     height:70%;
     width:100%;
     background-color:lightgrey;
 }
-.character-label
+.session-label
 {
     height:30%;
     width:100%;
 }
-.character-name
+.session-name
 {
     font-style: italics;
 }

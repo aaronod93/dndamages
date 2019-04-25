@@ -29,6 +29,10 @@ class CharacterController extends Controller
         return DataTables::of(CharacterService::getUserCharactersQuery())
         ->make(true);
     }
+    public function userCharacters()
+    {
+       return response()->json(CharacterService::getUserCharactersQuery()->get());
+    }
     public function create(Request $request)
     {
         

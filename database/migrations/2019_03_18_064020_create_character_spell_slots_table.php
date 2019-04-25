@@ -13,6 +13,7 @@ class CreateCharacterSpellSlotsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('character_spell_slots');
         Schema::create('character_spell_slots', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

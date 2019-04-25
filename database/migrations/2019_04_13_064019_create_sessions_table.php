@@ -13,6 +13,7 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('sessions');
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -20,9 +21,9 @@ class CreateSessionsTable extends Migration
             $table->string('name')->nullable();
             $table->string('code')->nullable();
             $table->integer('round_number')->default(1);
-            $table->integer('gm_id');
+            $table->unsignedInteger('owner_id');
             $table->unsignedInteger('campaign_id')->nullable();
-            $table->foreign('gm_id')->references('id')->on('users');
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

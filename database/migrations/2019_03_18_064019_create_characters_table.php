@@ -13,6 +13,7 @@ class CreateCharactersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('characters');
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
             $table->softDeletes();

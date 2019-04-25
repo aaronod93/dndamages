@@ -36781,6 +36781,11 @@ ul.stepper li.completed a .label {
           animation: spinner-grow 0.4s linear infinite;
 }
 
+html,
+body {
+  min-height: 100% !important;
+}
+
 .mainContent {
   height: calc(100% - 105px);
   margin-top: 5px;
@@ -36966,6 +36971,10 @@ ul.stepper li.completed a .label {
 
 .mh-20 {
   height: 20% !important;
+}
+
+.mh-100 {
+  min-height: 100% !important;
 }
 
 /*Checkbox CSS Styling*/

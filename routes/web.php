@@ -23,3 +23,5 @@ Route::get('/user', 'Users\UserController@index')->name('user.profile');
 
 /* Datatable Routes */
 Route::post('/characters/datatable/user', 'Resources\CharacterController@userDatatable')->name('characters.userdt');
+Route::post('/characters/user', 'Resources\CharacterController@userCharacters')->name('characters.user');
+Route::post('/sessions/user', 'Resources\SessionController@userSessions')->name('sessions.user');

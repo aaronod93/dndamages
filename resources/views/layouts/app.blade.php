@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @php
     $user = Auth::check() ? Auth::user() : null;
 @endphp
@@ -27,7 +27,7 @@
     @yield('head-content')
   </script>
 </head>
-<body class="h-100">
+<body>
   <div class="preloader">
     <div class="loader"></div>
   </div>

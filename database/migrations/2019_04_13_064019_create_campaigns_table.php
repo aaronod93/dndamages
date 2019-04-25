@@ -13,12 +13,13 @@ class CreateCampaignsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('campaigns');
         Schema::create('campaigns', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->softDeletes();
             $table->string('name')->nullable();
-            $table->integer('owner_id');
+            $table->unsignedInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('users');
         });
     }
