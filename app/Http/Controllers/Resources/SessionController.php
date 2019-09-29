@@ -28,24 +28,17 @@ class SessionController extends Controller
     {
        return response()->json(SessionService::getUserSessionsQuery()->get());
     }
+    public function store(Request $request)
+    {
+      $session = SessionService::createSession($request->name);
+      return redirect()->route('index')->with('success', trans('general.createSessionSuccess'));
+    }
     public function create(Request $request)
     {
-        
+        return view('sessions.create');
     }
-    public function store()
+    public function join(Request $request)
     {
-
-    }
-    public function edit(Request $request, $id)
-    {
-      $session = Session::findOrFail($id);
-    }
-    public function update(Request $request, $id)
-    {
-      $session = Session::findOrFail($id);
-    }
-    public function destroy(Request $request, $id)
-    {
-      $session = Session::findOrFail($id);
+        return view('sessions.join');
     }
 }

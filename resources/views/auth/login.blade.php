@@ -7,8 +7,15 @@
             <div class="card">
                 <div class="card-header txt-theme">@lang('general.signin')</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') . '?' . app('request')->input('returnUrl') }}">
                         @csrf
+                        @if(app('request')->input('returnUrl') != null)
+                        <div class="row text-center">
+                            <div class="col-8 offset-2 py-3 txt-theme ">
+                                <h5><i>Please login or register to continue</i></h5>
+                            </div>
+                        </div>
+                        @endif
                         <div class="form-group row txt-theme">
                             <label for="email" class="col-2 col-form-label text-md-right"><i class="fa fa-envelope fa-2x"></i></label>
                             <div class="col-8">

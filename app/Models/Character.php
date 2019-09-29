@@ -17,15 +17,19 @@ class Character extends Model
         'classes',
         'race',
         'image_url',
-        'theme_number',
+        'theme_color',
         'user_id'
     ];
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
     public function image()
     {
         return $this->hasOne(Image::class);
+    }
+    public function sessionEntities()
+    {
+        return $this->hasMany(SessionEntity::class);
     }
 }

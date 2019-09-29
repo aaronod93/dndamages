@@ -1,0 +1,11 @@
+Here art thou notes
+
+--Force initiative recheck
+
+    1. DM clicks initiative recheck
+    2. Broadcasts event to force session characters to input their initiatives.
+    3. Characters put in their initiatives
+    4. Individually initiatives are updated in the system 
+    5. Broadcast events when characters update their initiatives
+    6. DM receives updated initiatives.
+

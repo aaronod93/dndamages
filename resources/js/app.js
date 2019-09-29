@@ -7,11 +7,15 @@
 window.$ = require('jquery');
 require('./bootstrap');
 window.Vue = require('vue');
+const axios = require('axios');
+axios.defaults.headers.common['X-CSRF-TOKEN'] = window.CSRF_TOKEN;
 
 require('mdbvue');
 require('datatables.net');
-
+require('datatables.net-responsive');
+require('datatables.net-responsive-bs4');
 window.Pickr = require('@simonwep/pickr');
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

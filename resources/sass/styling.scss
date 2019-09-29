@@ -1,12 +1,11 @@
 @import "./variables";
 html, body
 {
-  min-height:100%!important;
+  height: 100%;
 }
 .mainContent
 {
-  height: calc(100% - 105px);
-  margin-top:5px;
+  min-height: 100%;
 }
 .jumbotron.header
 {
@@ -21,10 +20,6 @@ html, body
 {
   margin-top:4px;
   margin-bottom:4px!important;
-}
-.split-jumbotron
-{
-  height: 100%;
 }
 .nb-t .list-group-item
 {
@@ -83,6 +78,10 @@ html, body
     text-align: center;
     vertical-align:middle;
 }
+.va-middle
+{
+  vertical-align:middle;
+}
 .card-jumbotron
 {
     padding-left:0;
@@ -120,6 +119,10 @@ html, body
     right:0;
     bottom:0;
     margin:0 auto;
+}
+.pos-absolute
+{
+    position:absolute!important;
 }
 .loader{
     top:25%;
@@ -184,7 +187,7 @@ html, body
   {
      min-height:100%!important;
   }
-  /*Checkbox CSS Styling*/
+/*Checkbox CSS Styling*/
 
   label {
     position: relative;
@@ -238,6 +241,7 @@ html, body
   {
     max-height:20%!important;
   }
+
   @media only screen and (min-width: 768px)
   {
     .top-jumbo
@@ -246,11 +250,6 @@ html, body
     }
   }
   @media (max-width: 768px) {
-    .mainContent {
-        width: 100%!important; /*this gives it the precise width to match the Bootstrap defaults*/
-        max-width:100%!important;
-        margin:0 0;
-    }
     #join-session
     {
       margin-bottom:2rem!important;

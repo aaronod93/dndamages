@@ -17,6 +17,7 @@ class CreateCharactersTable extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
             $table->softDeletes();
+            $table->timestamps();
             $table->integer('maximum_hp')->default(0);
             $table->string('name');
             $table->integer('level')->default(1);
@@ -24,7 +25,6 @@ class CreateCharactersTable extends Migration
             $table->string('race')->nullable();
             $table->string('theme_color')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
-            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('no action');
         });
     }
@@ -36,6 +36,10 @@ class CreateCharactersTable extends Migration
      */
     public function down()
     {
+        Schema::table('characters', function(Blueprint $table)
+        {
+            $table->dropForeign(['user_id']);
+        });
         Schema::dropIfExists('characters');
     }
 }

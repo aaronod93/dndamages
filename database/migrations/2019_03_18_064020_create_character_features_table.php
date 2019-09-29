@@ -19,7 +19,8 @@ class CreateCharacterFeaturesTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('quantity')->default(1);
-            $table->string('resets_on')->nullable();
+            $table->boolean('is_legendary')->default(false);
+            $table->enum('resets_on', ['StartOfYourTurn', 'EndOfYourTurn', 'ShortRest', 'LongRest', 'Dawn', 'Dusk'])->nullable();
             $table->integer('character_id')->unsigned();
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('no action');
             $table->timestamps();

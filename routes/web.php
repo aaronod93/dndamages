@@ -12,16 +12,32 @@
 */
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
-Route::resource('/characters', 'Resources\CharacterController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
+
+Route::middleware('auth')->group(function () {
 /* User Routes */
 Route::get('/users/{user_id}/setTheme', 'Users\UserController@setTheme')->name('users.settheme');
 Route::get('/user', 'Users\UserController@index')->name('user.profile');
+Route::get('/user/profile', 'Users\UserController@profileData')->name('user.profileData');
+/* Join Session Routes */
+
+Route::get('/sessions/join', '\App\Http\Controllers\Resources\SessionController@join')->name('sessions.join');
 
 /* Datatable Routes */
-Route::post('/characters/datatable/user', 'Resources\CharacterController@userDatatable')->name('characters.userdt');
-Route::post('/characters/user', 'Resources\CharacterController@userCharacters')->name('characters.user');
-Route::post('/sessions/user', 'Resources\SessionController@userSessions')->name('sessions.user');
+Route::get('/characters/datatable', 'Resources\CharacterController@userDatatable')->name('characters.userdt');
+Route::get('/sessions/datatable', 'Resources\SessionController@userDatatable')->name('sessions.userdt');
+
+/*Data Routes */
+Route::get('/characters/data', 'Resources\CharacterController@userCharacters')->name('characters.user');
+Route::get('/sessions/data', 'Resources\SessionController@userSessions')->name('sessions.user');
+
+/*Session Routes*/
+Route::get('/sessions/create', 'Resources\SessionController@create')->name('sessions.create');
+Route::post('/sessions/store', 'Resources\SessionController@store')->name('sessions.store');
+/* Character Routes */
+Route::get('/characters/create', 'Resources\CharacterController@create')->name('characters.create');
+Route::post('/characters/store', 'Resources\CharacterController@store')->name('characters.store');
+});

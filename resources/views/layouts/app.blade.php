@@ -9,26 +9,28 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="user_id" content="{{Auth::user() ? Hashids::encode(Auth::user()->id) : ''}}">
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script>
-    var CSRF_TOKEN = "{{csrf_token()}}";
+    window.CSRF_TOKEN = "{{csrf_token()}}";
     </script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <style id="color-picker-tag">
+  </style>
   <script>
     @yield('userThemeChange')
-    @yield('head-content')
   </script>
+      @yield('head-content')
 </head>
 <body>
-  <div class="preloader">
+  <div class="preloader app">
     <div class="loader"></div>
   </div>
 <div id="vue-navbar" class="bg-theme">
@@ -49,8 +51,14 @@
           @if($user)
           <li class="nav-item ripple-parent">
                 <a href="{{route('user.profile')}}" class="nav-link navbar-link">@lang('general.profile')</a>
-          </li> 
+          </li>
           @endif
+          <li class="nav-item ripple-parent">
+            <a href="/sessions/create" class="nav-link navbar-link">Create Session</a>
+          </li>
+          <li class="nav-item ripple-parent">
+            <a href="/sessions/join" class="nav-link navbar-link">Join Session</a>
+          </li>
           <li class="nav-item ripple-parent">
                 @if($user)
                 <a href="/logout" class="nav-link navbar-link">@lang('general.signout')&nbsp;<i class="fa fa-sign-out-alt"></i></a>
@@ -116,6 +124,7 @@
       @if($user != null && $user->theme_color)
         currentColor: '#{{$user->theme_color}}',
       @endif
+      useStyleTag: true,
     });
     themePickr.on('init', (pickrInstance) => {
       var color = siteThemer.getCurrentColor();
@@ -130,7 +139,7 @@
     $(document).ready(function()
     {
       siteThemer.updateColor();
-      $('.preloader').hide();
+      $('.preloader.app').hide();
     });
   </script>
   @yield('js-scripts')

@@ -14,18 +14,17 @@
 
   window.siteThemer = function (options) {
     var self = this;
-    console.log('initialising site themer - input options below');
-    console.log(options);
     self.options = $.extend(window.siteThemer.defaults, options);
     if (self.options.currentColor == null) self.options.currentColor = self.options.defaultColor;
-    console.log('after extend');
-    console.log(self.options);
+    console.log(window.siteThemer.defaults, self.options);
   };
 
   window.siteThemer.defaults = {
     defaultColor: '#184060',
     currentColor: '#184060',
     oppositeColor: '#ffffff',
+    useStyleTag: false,
+    styleTag: 'color-picker-tag',
     selectors: [{
       selector: '.bg-theme',
       attr: 'style',
@@ -72,11 +71,30 @@
 
   pluginPrototype.updateColor = function () {
     var self = this;
+    var styleTagElm = document.getElementById(this.options.styleTag);
 
-    for (var selectorIndex in self.options.selectors) {
-      console.log([selectorIndex, self.options.selectors[selectorIndex]]);
-      var selectorObj = self.options.selectors[selectorIndex];
-      $(selectorObj.selector).attr(selectorObj.attr, selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor));
+    if (self.useStyleTag == false || styleTagElm == null) {
+      for (var selectorIndex in self.options.selectors) {
+        var selectorObj = self.options.selectors[selectorIndex];
+        $(selectorObj.selector).attr(selectorObj.attr, selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor));
+      }
+    } else {
+      console.log('hit style tag element populating.');
+      var strStyleText = "";
+
+      for (var selectorIndex in self.options.selectors) {
+        var selectorObj = self.options.selectors[selectorIndex];
+
+        if (selectorObj.attr == 'style') {
+          strStyleText += selectorObj.selector + "{";
+          strStyleText += selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor);
+          strStyleText += "}";
+        }
+      }
+
+      console.log('filling element with:');
+      console.log(strStyleText);
+      styleTagElm.innerHTML = strStyleText;
     }
   };
 

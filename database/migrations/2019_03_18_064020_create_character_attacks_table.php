@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCharacterSpellSlotsTable extends Migration
+class CreateCharacterAttacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCharacterSpellSlotsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('character_spell_slots');
-        Schema::create('character_spell_slots', function (Blueprint $table) {
+        Schema::dropIfExists('character_attacks');
+        Schema::create('character_attacks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('quantity')->default(0);
-            $table->string('resets_on')->nullable();
+            $table->enum('resets_on', ['StartOfYourTurn', 'EndOfYourTurn', 'ShortRest', 'LongRest', 'Dawn', 'Dusk', 'NotApplicable'])->nullable();
             $table->integer('character_id')->unsigned();
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('no action');
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateCharacterSpellSlotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('character_spell_slots');
+        Schema::dropIfExists('character_attacks');
     }
 }

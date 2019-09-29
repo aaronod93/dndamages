@@ -18,8 +18,18 @@
 
 @import "./styling.scss";
 
+@import "~datatables.net-responsive-bs4/css/responsive.bootstrap4.css";
+
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.no-dec
+{
+  text-decoration:none;
+  list-style: none;
+}
+.brighter-150 {
+  filter: brightness(150%);
 }

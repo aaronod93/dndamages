@@ -19,11 +19,11 @@ class CreateSessionsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->string('name')->nullable();
-            $table->string('code')->nullable();
             $table->integer('round_number')->default(1);
-            $table->unsignedInteger('owner_id');
+            $table->unsignedInteger('owner_id')->nullable();
             $table->unsignedInteger('campaign_id')->nullable();
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('set null');
         });
     }
 
@@ -34,6 +34,11 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
+        Schema::table('sessions', function(Blueprint $table)
+        {
+            $table->dropForeign(['owner_id']);
+            $table->dropForeign(['campaign_id']);
+        });
         Schema::dropIfExists('sessions');
     }
 }

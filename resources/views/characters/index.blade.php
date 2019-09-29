@@ -16,22 +16,25 @@ input[type=search]
 .dtLoader
 {
     position:absolute!important;
-    height:calc(100% - 90px)!important;
+    height:calc(100% - 60px)!important;
     width:calc(100% - 30px)!important;
-    top:90px!important;
-    display:inline!important;
+    top:80px;
+}
+#DataTables_Table_0_filter
+{
+    left:0;
 }
 .dataTables_length, .dataTables_paginate, .dataTables_info
 {
     display:none;
 }
 </style>
-<div class="container-fluid mainContent">
+<div class="container-fluid p-5 mainContent">
 <div class="row text-center h-100 justify-content-center">
     <div class="col-12 h-100">
-        <div class="jumbotron card-jumbotron hoverable split-jumbotron">
-            <h5 class="txt-theme">Your Characters</h5>
-            <div class="table-responsive text-nowrap p-1">
+        <div class="jumbotron card-jumbotron hoverable">
+            <h3 class="txt-theme pt-5">Your Characters</h3>
+            <div class="text-nowrap p-5">
                 <table class="table dtYourCharacters">
                 <caption>List of your Characters</caption>
                     <thead>
@@ -57,13 +60,15 @@ input[type=search]
     $(document).ready(function () {
         $('input[type=search]').addClass('form-control');
         $('.dtYourCharacters').DataTable({
-            order: [[ 4, "desc" ]],
+            order: [[ 2, "desc" ]],
             processing: true,
             serverSide: true,
             searchDelay: 1000,
+            dom: 'Bflrtip',
+            autoWidth: false,
             responsive:true,
             ajax: {
-                url: '/characters/datatable/user',
+                url: '/characters/datatable',
                 method: 'POST', 
 				headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -92,24 +97,9 @@ input[type=search]
                 {
                     data: 'maximum_hp',
                 },
-                /*{   
-                    data: 'report_status',
-                    name: 'vtwo.name',
-                    render: function(data, type, row) {
-                        if (type === "sort" || type === "type")
-                            return data;
-                        if (row.report_status_slug == "pending")
-                            return "<span class='label label-warning'>"+row.report_status+"</span>";
-                        if (row.report_status_slug == "open")
-                            return "<span class='label label-danger'>"+row.report_status+"</span>";
-                        if (row.report_status_slug == "closed")
-                            return "<span class='label label-primary'>"+row.report_status+"</span>";
-                    }
-                },*/
                // { data: 'actions' },
             ],
         });
-        $('.dataTables_length').addClass('bs-select');
     });
 </script>
 @endsection
