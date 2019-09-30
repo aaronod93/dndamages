@@ -24,10 +24,13 @@ class SessionController extends Controller
         return DataTables::of(SessionService::getUserSessionsQuery())
         ->make(true);
     }
-    public function userSessions()
+    public function userSessions(Request $request)
     {
+       $take = $request->query('take');
+       if($take != null)
+          return response()->json(SessionService::getUserSessionsQuery()->take($take)->get());
        return response()->json(SessionService::getUserSessionsQuery()->get());
-    }
+    } 
     public function store(Request $request)
     {
       $session = SessionService::createSession($request->name);

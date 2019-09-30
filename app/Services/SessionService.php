@@ -24,17 +24,13 @@ class SessionService
         $session->save();
         return $session;
     }
-    public static function getUserSessionEntityQuery($take = null)
+    public static function getUserSessionEntityQuery()
     {
         $user = Auth::user();
-        $query = SessionEntity::where(
+        return SessionEntity::where(
             [
                 ['user_id', $user->id],
                 ['type', 'Player']
             ]);
-        if($take != null)
-                return $query->take($take);
-        else
-                return $query;
     }
 }

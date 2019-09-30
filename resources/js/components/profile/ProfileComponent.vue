@@ -8,33 +8,14 @@
             </div>
         </div>
         <div class="col-12 col-lg-9 col-md-8 h-100 mb-3 top-jumbo">
-            <div class="d-flex flex-column h-100">
-                <div class="row text-center h-100">
-                    <div class="col-12">
-                        <div class="d-flex align-items-start flex-column h-100 w-100">
-                            <div class="d-inline-flex w-100 text-center px-5">
-                                <div class="row w-100 px-0">
-                                    <datatables-component :config="sessionConfig"></datatables-component>
-                                </div>
-                            </div>
-                            <div class="d-inline-flex w-100 text-center px-5">
-                                <div class="row w-100 px-0">
-                                    <datatables-component :config="characterConfig"></datatables-component>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--
-'method', 'url', 'name', 'getParameters', 'columns'
-
-        -->
+            <tile-component :title="sessionConfig.title" :request_type="sessionConfig.request_type" :url="sessionConfig.url" :default_image_url="sessionConfig.default_image_url" ></tile-component>
+            <tile-component :title="characterConfig.title" :request_type="characterConfig.request_type" :url="characterConfig.url" :default_image_url="characterConfig.default_image_url"></tile-component>
+        </div>
     </div>
 </template>
 <script>
 import UserCardComponent from "./UserCardComponent";
-import DatatablesComponent from "../utilities/DatatablesComponent";
+import TileComponent from "../utilities/TileComponent";
     export default {
         mounted() {
             
@@ -42,51 +23,20 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
         data()
         {
             return {
-                sessionConfig: {
-                    name: 'Sessions',
-                    method: 'get',
-                    url: '/sessions/datatable',
-                    parameters: null,
-                    columns: [
-                        {
-                            name: 'Name',
-                            prop: 'name'
-                        },
-                        {
-                            name: 'Round Number',
-                            prop: 'round_number'
-                        },
-                    ],
+                characterConfig: {
+                    title: 'Characters',
+                    request_type: 'get',
+                    url: '/characters/data?take=3',
+                    default_image_url: '/icons/cement-shoes.svg'
 
                 },
-                characterConfig: 
+                sessionConfig: 
                 {
-                    name: 'Characters',
-                    method: 'get',
-                    url: '/characters/datatable',
+                    title: 'Sessions',
+                    request_type: 'get',
+                    url: '/sessions/data?take=3',
                     parameters: null,
-                    columns: [
-                        {
-                            name: 'Name',
-                            prop: 'name'
-                        },
-                        {
-                            name: 'Level',
-                            prop: 'level'
-                        },
-                        {
-                            name: 'Race',
-                            prop: 'race'
-                        },
-                        {
-                            name: 'Classes',
-                            prop: 'classes'
-                        },
-                        {
-                            name: 'Maximum HP',
-                            prop: 'maximum_hp'
-                        }
-                    ]
+                    default_image_url: '/icons/system/bookmarklet.svg'
                 }
             };
         },
@@ -99,7 +49,7 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
         },
         components: {
             UserCardComponent,
-            DatatablesComponent
+            TileComponent
         }
     }
 </script>
