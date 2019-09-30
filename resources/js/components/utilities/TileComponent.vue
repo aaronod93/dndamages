@@ -1,28 +1,32 @@
 <template>
-    <div class="row jumbotron hoverable">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-8 offset-2">
-                    <h2>Recent {{title}}</h2>
+    <div class="jumbotron hoverable">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-8 offset-2 mb-2">
+                        <h2>Recent {{title}}</h2>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row w-100 px-0">
-            <span v-if="loading" class="spinner-border txt-theme"></span>
-            <span v-else-if="entities.length == 0">No {{title}} found.</span>
-            <div v-else class="col-12 d-flex align-items-center mh-50">
-                <div class="row px-0">
-                    <div class="session-tile col-4 col-sm-12" :key="entity.id" v-for="entity in entities">
+        <div class="row px-0">
+            <div v-if="loading" class="col-8 offset-2 text-center">
+                <span class="spinner-border txt-theme"></span>
+            </div>
+            <div class="col-8 offset-2 text-center" v-else-if="entities.length == 0">No {{title}} found.</div>
+            <div v-else class="col-12 col-md-6 offset-md-3">
+                <div class="d-flex align-content-center">
+                    <div class="entity-item border hoverable p-3 pointer" :key="entity.id" v-for="entity in entities">
+                        <a href="#">
                         <div class="row">
                             <div class="col-12">
-                                <img :src="entity.imageUrl ? entity.imageUrl : defaultImageUrl" class="entity-img bg-theme" />
+                                <img :src="entity.imageUrl ? entity.imageUrl : default_image_url" class="entity-img bg-theme w-100" />
                             </div>
                         </div>
                         <div class="row pt-2">
-                            <div class="col-12 text-center">
-                                <span class="font-italic txt-theme text-truncate w-100">{{entity.name}}</span>
-                            </div>
+                            <div class="text-center text-wrap w-100 font-italic txt-theme">{{entity.name}}</div>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -32,7 +36,7 @@
 <script>
     export default {
         name:'tile-component',
-        props: ['url', "request_type", "title", "defaultImageUrl"],
+        props: ['url', "request_type", "title", "default_image_url"],
         created()
         {
             this.initialiseEntities();
@@ -43,6 +47,15 @@
                 entities: [],
                 loading: true
             };
+        },
+        computed: {
+            entityStyle: function()
+            {
+                if(entities.length == 1)
+                {
+                    return 'margin-left:40%;'
+                }
+            }
         },
         methods:{
             initialiseEntities: function()
@@ -71,3 +84,10 @@
         },
     }
 </script>
+<style>
+.entity-img
+{
+    max-height:100px;
+    max-width:100px;
+}
+</style>

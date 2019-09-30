@@ -7,16 +7,16 @@
     <div v-else id="user-profile" class="card-component col-12">
         <div class="jumbotron card-jumbotron hoverable txt-theme pb-3">
             <img class="card-img bg-dark bg-theme" src="/icons/person.svg" alt="">
-            <ul class="list-group list-group-flush pt-2 nb-t nb-b">
+            <ul class="list-group list-group-flush pt-2 nb-t nb-b text-center">
                 <li class="list-group-item d-flex justify-content-center h-50px">
                     <span class="stat-info">
-                        <i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-user pr-3"></i>
                         {{user == null ? "" : user.name}}
                     </span>
                 </li>
                 <li class="list-group-item d-flex justify-content-center align-items-center h-50px">
                     <span class="stat-info">
-                        <i class="fa fa-trophy"></i>&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-trophy pr-3"></i>
                         {{joinedDate}}
                     </span>
                 </li>

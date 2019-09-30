@@ -52,13 +52,13 @@
           <li class="nav-item ripple-parent">
                 <a href="{{route('user.profile')}}" class="nav-link navbar-link">@lang('general.profile')</a>
           </li>
-          @endif
           <li class="nav-item ripple-parent">
             <a href="/sessions/create" class="nav-link navbar-link">Create Session</a>
           </li>
           <li class="nav-item ripple-parent">
             <a href="/sessions/join" class="nav-link navbar-link">Join Session</a>
           </li>
+          @endif
           <li class="nav-item ripple-parent">
                 @if($user)
                 <a href="/logout" class="nav-link navbar-link">@lang('general.signout')&nbsp;<i class="fa fa-sign-out-alt"></i></a>
