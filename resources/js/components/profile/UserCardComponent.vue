@@ -5,7 +5,7 @@
         </div>
     </div>
     <div v-else id="user-profile" class="card-component col-12">
-        <div class="jumbotron card-jumbotron hoverable txt-theme pb-3">
+        <div class="jumbotron card-jumbotron hoverable txt-theme pb-3 pt-5 px-3">
             <img class="card-img bg-dark bg-theme" src="/icons/person.svg" alt="">
             <ul class="list-group list-group-flush pt-2 nb-t nb-b text-center">
                 <li class="list-group-item d-flex justify-content-center h-50px">
@@ -22,7 +22,7 @@
                 </li>
             </ul>
             <ul class="list-group list-group-flush mt-2 nb-t nb-b">
-                <li class="list-group-item d-flex justify-content-between align-items-center .h-pix-10">
+                <li class="list-group-item d-flex justify-content-between align-items-center my-3 .h-pix-10">
                     <span class="w-100" style="height:1px; border-bottom:1px solid lightgrey;"></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -33,7 +33,7 @@
                         Joined Sessions
                     <span class="badge bg-theme badge-pill">{{joinedSessions ? joinedSessions : 0}}</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center .h-pix-10">
+                <li class="list-group-item d-flex justify-content-between align-items-center my-3 .h-pix-10">
                     <span class="w-100" style="height:1px; border-bottom:1px solid lightgrey;"></span>
                 </li>
                 <li class="d-flex justify-content-between">

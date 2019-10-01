@@ -15,9 +15,7 @@ class CharacterController extends Controller
       $user = Auth::user();
       if(!$user)
         abort(401);
-      //$characters = Character::all();
-      //return response()->json($characters);
-      return view('characters.index', compact('user'));
+      return view('characters.index');
     }
     public function show(Request $request, $id)
     {

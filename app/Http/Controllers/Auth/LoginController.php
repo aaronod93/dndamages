@@ -41,10 +41,11 @@ class LoginController extends Controller
         session(['link' => urlencode(url()->previous())]);
         return view('auth.login');
     }
-    protected function authenticated(Request $request, $user)
+    public function redirectTo()
     {
-        $redirectUrl = urldecode(session('link'));
-            if($redirectUrl)
-                return redirect($redirectUrl);
+        $redirectUrl = app('request')->query('returnUrl') ? urldecode(app('request')->query('returnUrl')) : urldecode(session('link'));
+        if($redirectUrl)
+            return $redirectUrl;
+        return '/home';
     }
 }

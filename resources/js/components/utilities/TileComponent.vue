@@ -15,8 +15,8 @@
             </div>
             <div class="col-8 offset-2 text-center" v-else-if="entities.length == 0">No {{title}} found.</div>
             <div v-else class="col-12 col-md-6 offset-md-3">
-                <div class="d-flex align-content-center">
-                    <div class="entity-item border hoverable p-3 pointer" :key="entity.id" v-for="entity in entities">
+                <div class="d-flex justify-content-center">
+                    <div class="entity-item border hoverable p-3 pointer width-33" :key="entity.id" v-for="entity in entities">
                         <a href="#">
                         <div class="row">
                             <div class="col-12">
@@ -89,5 +89,11 @@
 {
     max-height:100px;
     max-width:100px;
+}
+.width-33
+{
+    width:25%!important;
+    margin-left:4%;
+    margin-right:4%;
 }
 </style>

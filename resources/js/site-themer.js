@@ -9,7 +9,6 @@
         self.options = $.extend(window.siteThemer.defaults, options);
         if(self.options.currentColor == null)
           self.options.currentColor = self.options.defaultColor;
-        console.log(window.siteThemer.defaults, self.options);
     };
     window.siteThemer.defaults = {
         defaultColor: '#184060',
@@ -39,6 +38,11 @@
             selector: '#form2:focus, #form3:focus',
             attr: 'style',
             value: 'box-shadow: 0 1px 0 0 {currentColor}!important;border-bottom: 1px solid {currentColor}!important;color:{currentColor}!important'
+          },
+          {
+            selector: '.loader:before, .loader:after',
+            attr: 'style',
+            value: 'border-top-color: {currentColor}!important;'
           }
         ],
         themeUrl: '/users/settheme',
@@ -49,7 +53,6 @@
 
     pluginPrototype.setColor = function(color, updateTheme)
     {
-      console.log('setting passed in color: ' + color);
         var self = this;
         if(color == null || color == self.options.currentColor || color == self.options.oppositeColor)
           return;
@@ -89,7 +92,6 @@
       }
       else
       {
-        console.log('hit style tag element populating.');
         var strStyleText = "";
         for(var selectorIndex in self.options.selectors)
         {
@@ -104,8 +106,6 @@
             strStyleText += "}";
           }            
         }
-        console.log('filling element with:');
-        console.log(strStyleText);
         styleTagElm.innerHTML = strStyleText;
       }
     };
@@ -130,7 +130,6 @@
       var selectorObj = self.options.selectors[index];
       if(selectorObj)
       {
-        console.log([selectorObj]);
         $(selectorObj.selector).attr(selectorObj.attr, 
           selectorObj.value
           .replace('{currentColor}', self.options.currentColor)

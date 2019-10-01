@@ -259,7 +259,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.entity-img\r\n{\r\n    max-height:100px;\r\n    max-width:100px;\n}\r\n", ""]);
+exports.push([module.i, "\n.entity-img\r\n{\r\n    max-height:100px;\r\n    max-width:100px;\n}\n.width-33\r\n{\r\n    width:25%!important;\r\n    margin-left:4%;\r\n    margin-right:4%;\n}\r\n", ""]);
 
 // exports
 
@@ -19052,7 +19052,8 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "jumbotron card-jumbotron hoverable txt-theme pb-3"
+              staticClass:
+                "jumbotron card-jumbotron hoverable txt-theme pb-3 pt-5 px-3"
             },
             [
               _c("img", {
@@ -19174,7 +19175,7 @@ var staticRenderFns = [
       "li",
       {
         staticClass:
-          "list-group-item d-flex justify-content-between align-items-center .h-pix-10"
+          "list-group-item d-flex justify-content-between align-items-center my-3 .h-pix-10"
       },
       [
         _c("span", {
@@ -19192,7 +19193,7 @@ var staticRenderFns = [
       "li",
       {
         staticClass:
-          "list-group-item d-flex justify-content-between align-items-center .h-pix-10"
+          "list-group-item d-flex justify-content-between align-items-center my-3 .h-pix-10"
       },
       [
         _c("span", {
@@ -19303,13 +19304,14 @@ var render = function() {
         : _c("div", { staticClass: "col-12 col-md-6 offset-md-3" }, [
             _c(
               "div",
-              { staticClass: "d-flex align-content-center" },
+              { staticClass: "d-flex justify-content-center" },
               _vm._l(_vm.entities, function(entity) {
                 return _c(
                   "div",
                   {
                     key: entity.id,
-                    staticClass: "entity-item border hoverable p-3 pointer"
+                    staticClass:
+                      "entity-item border hoverable p-3 pointer width-33"
                   },
                   [
                     _c("a", { attrs: { href: "#" } }, [

@@ -42038,7 +42038,7 @@ if (typeof WebSocket !== 'undefined') {
   BrowserWebSocket = self.WebSocket || self.MozWebSocket;
 } else {
   try {
-    NodeWebSocket = __webpack_require__(/*! ws */ 3);
+    NodeWebSocket = __webpack_require__(/*! ws */ 5);
   } catch (e) { }
 }
 
@@ -106183,7 +106183,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2:
+/***/ 4:
 /*!***********************************!*\
   !*** multi ./resources/js/app.js ***!
   \***********************************/
@@ -106195,7 +106195,7 @@ module.exports = __webpack_require__(/*! C:\Repositories\dnd\resources\js\app.js
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!********************!*\
   !*** ws (ignored) ***!
   \********************/
@@ -106206,4 +106206,4 @@ module.exports = __webpack_require__(/*! C:\Repositories\dnd\resources\js\app.js
 
 /***/ })
 
-},[[2,"/js/manifest","/js/vendor"]]]);
+},[[4,"/js/manifest","/js/vendor"]]]);

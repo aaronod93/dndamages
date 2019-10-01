@@ -12,12 +12,11 @@ class SessionController extends Controller
 {
     public function index()
     {
-      abort(404);
+       return view('sessions.index');
     }
     public function show(Request $request, $id)
     {
-      $session = Session::findOrFail($id);
-      return response()->json($session);
+      
     }
     public function userDatatable()
     {

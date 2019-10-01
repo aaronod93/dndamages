@@ -24,6 +24,7 @@ class CreateCharactersTable extends Migration
             $table->string('classes')->nullable();
             $table->string('race')->nullable();
             $table->string('theme_color')->nullable();
+            $table->integer('AC')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('no action');
         });

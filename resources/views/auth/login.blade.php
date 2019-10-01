@@ -7,12 +7,12 @@
             <div class="card">
                 <div class="card-header txt-theme">@lang('general.signin')</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') . '?' . app('request')->input('returnUrl') }}">
+                    <form method="POST" action="{{ route('login') . '?returnUrl=' . app('request')->query('returnUrl') }}">
                         @csrf
-                        @if(app('request')->input('returnUrl') != null)
+                        @if(app('request')->query('returnUrl') != null)
                         <div class="row text-center">
                             <div class="col-8 offset-2 py-3 txt-theme ">
-                                <h5><i>Please login or register to continue</i></h5>
+                                <h5><i>Please login or register to continue.</i></h5>
                             </div>
                         </div>
                         @endif

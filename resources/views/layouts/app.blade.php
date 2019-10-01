@@ -53,10 +53,10 @@
                 <a href="{{route('user.profile')}}" class="nav-link navbar-link">@lang('general.profile')</a>
           </li>
           <li class="nav-item ripple-parent">
-            <a href="/sessions/create" class="nav-link navbar-link">Create Session</a>
+          <a href="{{Auth::check() ? '/sessions/create' : '/login?returnUrl=/sessions/create'}}" class="nav-link navbar-link">Create Session</a>
           </li>
           <li class="nav-item ripple-parent">
-            <a href="/sessions/join" class="nav-link navbar-link">Join Session</a>
+            <a href="{{Auth::check() ? '/sessions/join' : '/login?returnUrl=/sessions/join'}}" class="nav-link navbar-link">Join Session</a>
           </li>
           @endif
           <li class="nav-item ripple-parent">

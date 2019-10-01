@@ -37,7 +37,10 @@ Route::get('/sessions/data', 'Resources\SessionController@userSessions')->name('
 /*Session Routes*/
 Route::get('/sessions/create', 'Resources\SessionController@create')->name('sessions.create');
 Route::post('/sessions/store', 'Resources\SessionController@store')->name('sessions.store');
+Route::get('/sessions/{session}/{user}/{character?}', 'Resources\SessionController@start')->name('sessions.start');
+Route::get('/sessions', 'Resources\SessionController@index')->name('sessions.index');
 /* Character Routes */
 Route::get('/characters/create', 'Resources\CharacterController@create')->name('characters.create');
 Route::post('/characters/store', 'Resources\CharacterController@store')->name('characters.store');
+Route::get('/characters', 'Resources\CharacterController@index')->name('characters.index');
 });

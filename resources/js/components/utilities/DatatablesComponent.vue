@@ -2,7 +2,7 @@
 <div class="container-fluid mainContent">
     <div class="row text-center h-100 justify-content-center">
         <div class="col-12 h-100">
-            <div class="jumbotron card-jumbotron hoverable">
+            <div class="jumbotron card-jumbotron hoverable p-4">
                 <h3 class="txt-theme pt-2">{{name}}</h3>
                 <div class="text-nowrap p-2">
                     <table :class="'table dtYour' + name">
