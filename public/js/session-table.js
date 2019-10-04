@@ -19,7 +19,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sessionConfig: {
-        name: 'Sessions',
+        name: 'Session',
         request_type: 'get',
         url: '/sessions/datatable',
         parameters: null,
@@ -29,9 +29,13 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           name: 'Created Date',
           prop: 'created_at'
-        }]
+        }],
+        show_add: true
       }
     };
+  },
+  methods: {
+    handleAddClicked: function handleAddClicked() {}
   },
   components: {
     DatatablesComponent: _utilities_DatatablesComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -49,6 +53,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -98,6 +104,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     columns: function columns() {
       return this.config ? this.config.columns : null;
+    },
+    showAdd: function showAdd() {
+      return !this.config || this.config.show_add == null ? true : this.config.show_add;
     }
   },
   methods: {
@@ -1261,7 +1270,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("datatables-component", { attrs: { config: _vm.sessionConfig } })
+  return _c("datatables-component", {
+    attrs: { config: _vm.sessionConfig },
+    on: { addClicked: _vm.handleAddClicked }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1290,12 +1302,39 @@ var render = function() {
       _c("div", { staticClass: "col-12 h-100" }, [
         _c("div", { staticClass: "jumbotron card-jumbotron hoverable p-4" }, [
           _c("h3", { staticClass: "txt-theme pt-2" }, [
-            _vm._v(_vm._s(_vm.name))
+            _vm._v(_vm._s(_vm.name) + "s")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "text-nowrap p-2" }, [
+            _vm.showAdd
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "mr-5 py-1 px-3 pointer",
+                    staticStyle: {
+                      position: "absolute",
+                      right: "0",
+                      border: "1px solid #ced4da",
+                      "border-radius": "5px"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("addClicked")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-plus mr-3",
+                      staticStyle: { color: "#212529" }
+                    }),
+                    _vm._v("\r\n                    Add " + _vm._s(_vm.name))
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _c("table", { class: "table dtYour" + _vm.name }, [
-              _c("caption", [_vm._v("List of " + _vm._s(_vm.name))]),
+              _c("caption", [_vm._v("List of " + _vm._s(_vm.name) + "s")]),
               _vm._v(" "),
               _c("thead", [
                 _c(

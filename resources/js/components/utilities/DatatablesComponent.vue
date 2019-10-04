@@ -3,10 +3,12 @@
     <div class="row text-center h-100 justify-content-center">
         <div class="col-12 h-100">
             <div class="jumbotron card-jumbotron hoverable p-4">
-                <h3 class="txt-theme pt-2">{{name}}</h3>
+                <h3 class="txt-theme pt-2">{{name}}s</h3>
                 <div class="text-nowrap p-2">
+                    <div @click="$emit('addClicked')" v-if="showAdd" style="position:absolute;right:0;border: 1px solid #ced4da;border-radius:5px;" class="mr-5 py-1 px-3 pointer"><i class="fa fa-plus mr-3" style="color:#212529"></i>
+                    Add {{name}}</div>
                     <table :class="'table dtYour' + name">
-                    <caption>List of {{name}}</caption>
+                    <caption>List of {{name}}s</caption>
                         <thead>
                             <tr>
                             <th scope="col" :key="index" v-for="(col, index) in columns">
@@ -55,6 +57,10 @@
             columns: function()
             {
                 return this.config ? this.config.columns : null;
+            },
+            showAdd: function()
+            {
+                return !this.config || this.config.show_add == null ? true : this.config.show_add; 
             }
         },
         methods:{

@@ -1,5 +1,5 @@
 <template>
-<datatables-component :config="sessionConfig"></datatables-component>
+<datatables-component @addClicked="handleAddClicked" :config="sessionConfig"></datatables-component>
 </template>
 <script>
 import DatatablesComponent from "../utilities/DatatablesComponent";
@@ -11,7 +11,7 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
         {
             return {
                 sessionConfig: {
-                    name: 'Sessions',
+                    name: 'Session',
                     request_type: 'get',
                     url: '/sessions/datatable',
                     parameters: null,
@@ -24,9 +24,16 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
                             name: 'Created Date',
                             prop: 'created_at',
                         }
-                    ]
+                    ],
+                    show_add: true
                 },
             };
+        },
+        methods: {
+            handleAddClicked: function()
+            {
+                
+            }
         },
         components: {
             DatatablesComponent

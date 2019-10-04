@@ -16,7 +16,6 @@
     var self = this;
     self.options = $.extend(window.siteThemer.defaults, options);
     if (self.options.currentColor == null) self.options.currentColor = self.options.defaultColor;
-    console.log(window.siteThemer.defaults, self.options);
   };
 
   window.siteThemer.defaults = {
@@ -82,7 +81,6 @@
         $(selectorObj.selector).attr(selectorObj.attr, selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor));
       }
     } else {
-      console.log('hit style tag element populating.');
       var strStyleText = "";
 
       for (var selectorIndex in self.options.selectors) {
@@ -95,8 +93,6 @@
         }
       }
 
-      console.log('filling element with:');
-      console.log(strStyleText);
       styleTagElm.innerHTML = strStyleText;
     }
   };
@@ -118,7 +114,6 @@
     var selectorObj = self.options.selectors[index];
 
     if (selectorObj) {
-      console.log([selectorObj]);
       $(selectorObj.selector).attr(selectorObj.attr, selectorObj.value.replace('{currentColor}', self.options.currentColor).replace('{defaultColor}', self.options.defaultColor).replace('{oppositeColor}', self.options.oppositeColor));
     }
   };
