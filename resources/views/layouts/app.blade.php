@@ -133,7 +133,7 @@
     }).on('save', (colorObj, pickrInstance) => {
         if(colorObj)
         {
-          siteThemer.setColor(colorObj.toHEX().toString(), true);
+          siteThemer.setColor(colorObj.toHEXA().toString(), true);
         }
     });
     $(document).ready(function()

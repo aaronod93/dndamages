@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
@@ -14,8 +14,8 @@
                         <div class="form-group row">
                             <label for="name" class="col-2 col-form-label text-md-right"><i class="fa fa-user fa-2x"></i></label>
 
-                            <div class="col-8 col-8">
-                                <input id="name" placeholder="Name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                            <div class="col-8">
+                                <input id="name" placeholder="Name" data-toggle="tooltip" title="Name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-2 col-form-label text-md-right"><i class="fa fa-envelope fa-2x"></i></label>
                             <div class="col-8">
-                                <input id="email" placeholder="{{ __('Email Address') }}" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" placeholder="{{ __('Email Address') }}" data-toggle="tooltip" title="Email Address" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             <label for="username" class="col-2 col-form-label text-md-right"><i class="fa fa-user-secret fa-2x"></i></label>
                             <div class="col-8">
-                                <input id="username" placeholder="{{ __('Username') }}" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required>
+                                <input id="username" placeholder="{{ __('Username') }}" data-toggle="tooltip" title="Username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required>
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('username') }}</strong>
@@ -51,7 +51,7 @@
                             <label for="password" class="col-2 col-form-label text-md-right"><i class="fa fa-key fa-2x"></i></label>
 
                             <div class="col-8">
-                                <input oninput="onPasswordInput()" id="password" placeholder="{{ __('Password') }}" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input oninput="onPasswordInput()" id="password" placeholder="{{ __('Password') }}" data-toggle="tooltip" title="Password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -65,18 +65,9 @@
                             <label for="password-confirm" class="col-2 col-form-label text-md-right confirm-field"><i class="fa fa-key fa-2x"></i></label>
 
                             <div class="col-8">
-                                <input oninput="onPasswordInput()" placeholder="{{ __('Confirm Password') }}" id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input oninput="onPasswordInput()" placeholder="{{ __('Confirm Password') }}" data-toggle="tooltip" title="Confirm Password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-                        <script>
-                        function onPasswordInput()
-                        {
-                            var $passwordField = $('#password');
-                            var $passwordConfirmField = $('#password-confirm');
-                            var $confirmFieldLbl = $('.confirm-field');
-                            $confirmFieldLbl.attr('style', 'color:' + ($passwordField.val() != $passwordConfirmField.val() ? 'red' : 'green') + ';!important;');
-                        }
-                        </script>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn bg-theme">
@@ -90,4 +81,22 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js-scripts')
+<script>
+    function onPasswordInput()
+    {
+        var $passwordField = $('#password');
+        var $passwordConfirmField = $('#password-confirm');
+        var $confirmFieldLbl = $('.confirm-field');
+        $confirmFieldLbl.attr('style', 'color:' + ($passwordField.val() != $passwordConfirmField.val() ? 'red' : 'green') + ';!important;');
+    }
+    $(document).ready(function()
+    {
+        $(':text[title]').tooltip({
+            placement: "right",
+            trigger: "focus"
+        });
+    });
+</script>
 @endsection
