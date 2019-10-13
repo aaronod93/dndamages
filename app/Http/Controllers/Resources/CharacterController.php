@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Resources;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CharacterRequest;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,11 +37,16 @@ class CharacterController extends Controller
     }
     public function create(Request $request)
     {
-        
+        $user = Auth::user();
+        return view('characters.create', compact('user'));
     }
-    public function store()
+    public function store(CharacterRequest $request)
     {
-
+        $res = CharacterService::createCharacter($request);
+        if($res['success'] == true)
+          return redirect()->route('characters.index')->with('success', 'Successfully created character!');
+        else
+          return redirect()->back()->with('error', 'Could not create a character. Please check your fields and try again.');
     }
     public function edit(Request $request, $id)
     {

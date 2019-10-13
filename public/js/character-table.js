@@ -19,7 +19,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       characterConfig: {
-        name: 'Characters',
+        name: 'Character',
         request_type: 'get',
         url: '/characters/datatable',
         parameters: null,
@@ -44,6 +44,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     DatatablesComponent: _utilities_DatatablesComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    handleAddClicked: function handleAddClicked() {
+      window.location.href = '/characters/create';
+    }
   }
 });
 
@@ -1275,7 +1280,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("datatables-component", { attrs: { config: _vm.characterConfig } })
+  return _c("datatables-component", {
+    attrs: { config: _vm.characterConfig },
+    on: { addClicked: _vm.handleAddClicked }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -18,7 +18,7 @@ class CreateCharacterAttacksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('quantity')->default(0);
-            $table->enum('resets_on', ['StartOfYourTurn', 'EndOfYourTurn', 'ShortRest', 'LongRest', 'Dawn', 'Dusk', 'NotApplicable'])->nullable();
+            $table->enum('resets_on', ['StartOfYourTurn', 'EndOfYourTurn', 'ShortRest', 'LongRest', 'Dawn', 'Dusk'])->nullable();
             $table->integer('character_id')->unsigned();
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('no action');
             $table->timestamps();

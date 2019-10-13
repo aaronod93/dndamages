@@ -1,5 +1,5 @@
 <template>
-<datatables-component :config="characterConfig"></datatables-component>
+<datatables-component @addClicked="handleAddClicked" :config="characterConfig"></datatables-component>
 </template>
 <script>
 import DatatablesComponent from "../utilities/DatatablesComponent";
@@ -11,7 +11,7 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
         {
             return {
                 characterConfig: {
-                    name: 'Characters',
+                    name: 'Character',
                     request_type: 'get',
                     url: '/characters/datatable',
                     parameters: null,
@@ -47,6 +47,12 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
         },
         components: {
             DatatablesComponent
+        },
+        methods: {
+            handleAddClicked()
+            {
+                window.location.href='/characters/create';
+            }
         }
     }
 </script>

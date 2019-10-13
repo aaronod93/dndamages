@@ -20,7 +20,7 @@ class CreateCharacterFeaturesTable extends Migration
             $table->text('description');
             $table->integer('quantity')->default(1);
             $table->boolean('is_legendary')->default(false);
-            $table->enum('resets_on', ['StartOfYourTurn', 'EndOfYourTurn', 'ShortRest', 'LongRest', 'Dawn', 'Dusk'])->nullable();
+            $table->enum('resets_on', ['StartOfYourTurn', 'EndOfYourTurn', 'ShortRest', 'LongRest', 'Dawn', 'Dusk', 'RollReset'])->nullable();
             $table->integer('character_id')->unsigned();
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('no action');
             $table->timestamps();
