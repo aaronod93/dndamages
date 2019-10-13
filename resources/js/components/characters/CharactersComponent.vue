@@ -36,10 +36,10 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
                             name: 'Armour Class',
                             prop: 'AC'
                         },
-                        /*{
-                            name: 'Theme Color',
-                            prop: 'theme_color'
-                        }*/
+                        {
+                            name: 'Actions',
+                            prop: 'actions'
+                        }
                     ]
 
                 },

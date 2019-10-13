@@ -41,6 +41,9 @@ Route::get('/sessions/{session}/{user}/{character?}', 'Resources\SessionControll
 Route::get('/sessions', 'Resources\SessionController@index')->name('sessions.index');
 /* Character Routes */
 Route::get('/characters/create', 'Resources\CharacterController@create')->name('characters.create');
+Route::get('/characters/edit/{id}', 'Resources\CharacterController@edit')->name('characters.edit');
 Route::post('/characters/store', 'Resources\CharacterController@store')->name('characters.store');
+Route::put('/characters/update', 'Resources\CharacterController@update')->name('characters.update');
+
 Route::get('/characters', 'Resources\CharacterController@index')->name('characters.index');
 });

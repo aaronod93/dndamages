@@ -38,6 +38,9 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           name: 'Armour Class',
           prop: 'AC'
+        }, {
+          name: 'Actions',
+          prop: 'actions'
         }]
       }
     };

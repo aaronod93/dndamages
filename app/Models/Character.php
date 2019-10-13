@@ -18,7 +18,8 @@ class Character extends Model
         'race',
         'image_url',
         'theme_color',
-        'user_id'
+        'user_id',
+        'AC'
     ];
     public function user()
     {
