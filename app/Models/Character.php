@@ -19,7 +19,7 @@ class Character extends Model
         'image_url',
         'theme_color',
         'user_id',
-        'ac'
+        'AC'
     ];
     public function user()
     {

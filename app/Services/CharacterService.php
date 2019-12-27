@@ -17,6 +17,7 @@ class CharacterService
         try
         {
             $character = new Character;
+            //dd($request->all());
             $character->fill($request->all());
             $character->save();
             return [

@@ -37,18 +37,10 @@ __webpack_require__.r(__webpack_exports__);
           prop: 'race'
         }, {
           name: 'Armour Class',
-          prop: 'ac'
+          prop: 'AC'
         }, {
           name: 'Actions',
-          prop: 'actions',
-          render: function render(data, type, row, meta) {
-            return "<a href='/characters/" + row.id + "/edit' class='btn btn-sm txt-theme'>Edit<i class='fa fa-pencil-alt ml-2'></i></a>";
-          }
-          /*{
-              name: 'Theme Color',
-              prop: 'theme_color'
-          }*/
-
+          prop: 'actions'
         }]
       }
     };

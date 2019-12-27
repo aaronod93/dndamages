@@ -24,7 +24,7 @@
                                             @endif
                                         </div>
                                         <div class="col-6 offset-4 text-right">
-                                                <button type="submit" id="load_submit" class="btn bg-theme"><span style="visibility:hidden;" class="spinner-border spinner-border-sm"></span><span class="pl-2 pr-3">@lang('general.createSessionTitle')&nbsp;<i class="fa fa-scroll"></i></span></button>
+                                                <button type="submit" id="load_submit" class="btn bg-theme"><span style="display:none;" class="spinner-border spinner-border-sm"></span><span class="pl-2 pr-3">@lang('general.createSessionTitle')&nbsp;<i class="fa fa-scroll"></i></span></button>
                                             </div>
                                         </div>
                                 </div>
@@ -43,7 +43,7 @@
     {
         $('#create_session').submit(function(e)
         {
-            $('#load_submit').attr('style', 'visibility:visible;');
+            $('#load_submit').attr('style', 'display:block;');
             $('#create_session').attr('disabled', true);
         });
     });
