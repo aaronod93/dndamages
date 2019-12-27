@@ -34,8 +34,16 @@ import DatatablesComponent from "../utilities/DatatablesComponent";
                         },
                         {
                             name: 'Armour Class',
-                            prop: 'AC'
+                            prop: 'ac'
                         },
+                        {
+                            name: 'Actions',
+                            prop: 'actions',
+                            render: function(data, type, row, meta)
+                            {
+                                return "<a href='/characters/" + row.id + "/edit' class='btn btn-sm txt-theme'>Edit<i class='fa fa-pencil-alt ml-2'></i></a>";
+                            }
+                        }
                         /*{
                             name: 'Theme Color',
                             prop: 'theme_color'

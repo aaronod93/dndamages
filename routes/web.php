@@ -43,4 +43,6 @@ Route::get('/sessions', 'Resources\SessionController@index')->name('sessions.ind
 Route::get('/characters/create', 'Resources\CharacterController@create')->name('characters.create');
 Route::post('/characters/store', 'Resources\CharacterController@store')->name('characters.store');
 Route::get('/characters', 'Resources\CharacterController@index')->name('characters.index');
+Route::get('/characters/{id}/edit', 'Resources\CharacterController@edit')->name('characters.edit');
+Route::put('/characters/{id}', 'Resources\CharacterController@update')->name('characters.update');
 });

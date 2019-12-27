@@ -130,9 +130,16 @@ __webpack_require__.r(__webpack_exports__);
             sProcessing: '<div class="preloader dtLoader"><div style="width:50px;height:50px;" class="loader"></div></div>'
           },
           columns: vm.columns.map(function (itm) {
-            return {
-              data: itm.prop
-            };
+            if (itm.render) {
+              return {
+                data: itm.prop,
+                render: itm.render
+              };
+            } else {
+              return {
+                data: itm.prop
+              };
+            }
           })
         });
       });

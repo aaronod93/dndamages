@@ -72,10 +72,10 @@ Create Character
                                 <div class="row mb-1">
                                     <label for="ac" class="col-2 col-form-label text-md-right"><img class="bg-theme icon-img" src="/icons/shield-bounces.svg"></label>
                                     <div class="col-6 offset-2">
-                                        <input id="ac" type="number" placeholder="Armour Class" class="form-control{{ $errors->has('AC') ? ' is-invalid' : '' }}" name="ac" value="{{ old('AC') }}">
-                                        @if ($errors->has('AC'))
+                                        <input id="ac" type="number" placeholder="Armour Class" class="form-control{{ $errors->has('ac') ? ' is-invalid' : '' }}" name="ac" value="{{ old('ac') }}">
+                                        @if ($errors->has('ac'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('AC') }}</strong>
+                                                <strong>{{ $errors->first('ac') }}</strong>
                                             </span>
                                         @endif
                                     </div>

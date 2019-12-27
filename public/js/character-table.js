@@ -37,7 +37,18 @@ __webpack_require__.r(__webpack_exports__);
           prop: 'race'
         }, {
           name: 'Armour Class',
-          prop: 'AC'
+          prop: 'ac'
+        }, {
+          name: 'Actions',
+          prop: 'actions',
+          render: function render(data, type, row, meta) {
+            return "<a href='/characters/" + row.id + "/edit' class='btn btn-sm txt-theme'>Edit<i class='fa fa-pencil-alt ml-2'></i></a>";
+          }
+          /*{
+              name: 'Theme Color',
+              prop: 'theme_color'
+          }*/
+
         }]
       }
     };
@@ -140,9 +151,16 @@ __webpack_require__.r(__webpack_exports__);
             sProcessing: '<div class="preloader dtLoader"><div style="width:50px;height:50px;" class="loader"></div></div>'
           },
           columns: vm.columns.map(function (itm) {
-            return {
-              data: itm.prop
-            };
+            if (itm.render) {
+              return {
+                data: itm.prop,
+                render: itm.render
+              };
+            } else {
+              return {
+                data: itm.prop
+              };
+            }
           })
         });
       });
